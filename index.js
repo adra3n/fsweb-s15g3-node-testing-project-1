@@ -6,9 +6,16 @@
  * ÖRNEK
  * nesneyiTrimle({ isim: '  jane  ' }) // yeni bir nesne döndürür { name: 'jane' }
  */
+
 function nesneyiTrimle(obj) {
   // ✨ kodlar buraya
+  for (const key in obj) {
+    obj[key] = obj[key].trim()
+  }
+  return obj
 }
+
+console.log(nesneyiTrimle({ isim: '  jane  ' }))
 
 /**
  * [Görev 2] verileniTrimle propları string olan bir nesne alır ve gönderilen propu trimler.
@@ -19,7 +26,11 @@ function nesneyiTrimle(obj) {
  * verileniTrimle({ isim: '  jane  ' , yas: ' 34 '}, 'isim') // şunu döndürür { isim: 'jane', yas: ' 34 '}
  */
 function verileniTrimle(obj, prop) {
-  // ✨ kodlar buraya
+  // ✨ kodlar buraya-
+  if (obj[prop]) {
+    obj[prop] = obj[prop].trim()
+  }
+  return obj
 }
 
 /**
@@ -32,6 +43,14 @@ function verileniTrimle(obj, prop) {
  */
 function enBuyukTamsayiyiBul(tamsayilar) {
   // ✨ kodlar buraya
+  let enBuyuk = tamsayilar[0].tamsayi
+  for (let index = 0; index < tamsayilar.length; index++) {
+    let sayi = tamsayilar[i]
+    if (sayi.tamsayi > enBuyuk) {
+      enBuyuk = sayi.tamsayi
+    }
+  }
+  return enBuyuk
 }
 
 function Sayici(ilkSayi) {
@@ -39,9 +58,8 @@ function Sayici(ilkSayi) {
    * [Görev 4A] Sayici bir sayaç oluşturur
    * @param {number} ilkSayi - Sayacin ilk değeri
    */
-  
+
   // ✨ gerekli propları ekleyin
-  
 
   /**
    * [Görev 4B] asagiSay metodu sıfıra doğru sayar
@@ -57,6 +75,11 @@ function Sayici(ilkSayi) {
    */
   this.asagiSay = () => {
     // ✨ kodlar buraya
+    if (ilkSayi > 0) {
+      return ilkSayi--
+    } else {
+      return 0
+    }
   }
 }
 
@@ -91,12 +114,10 @@ function Araba(/*kodlar buraya */) {
    * @param {number} depo - benzin deposu kapasitesi
    * @param {number} kml - arabanın litre başına kat edebileceği km yol
    */
- 
-    this.odometer = 0 // araba 0 kilometrede yüklenecek
-    this.depo = depoBenzin // araba full depoyla yüklenecek
-    // ✨ gerekli propları ekleyin
 
-  
+  this.odometer = 0 // araba 0 kilometrede yüklenecek
+  this.depo = depoBenzin // araba full depoyla yüklenecek
+  // ✨ gerekli propları ekleyin
 
   /**
    * [Görev 6B] sur metodu odometera km ekler ve aynı oranda depodan benzin tüketir
