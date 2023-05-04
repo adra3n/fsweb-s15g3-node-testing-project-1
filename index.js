@@ -75,11 +75,7 @@ function Sayici(ilkSayi) {
    */
   this.asagiSay = () => {
     // ✨ kodlar buraya
-    if (ilkSayi > 0) {
-      return ilkSayi--
-    } else {
-      return 0
-    }
+    return ilkSayi > 0 ? ilkSayi-- : 0
   }
 }
 
@@ -89,7 +85,8 @@ function Mevsimler() {
    */
 
   // ✨ gerekli propları ekleyin
-
+  const mevsimler = ['ilkbahar', 'yaz', 'sonbahar', 'kış']
+  const i = 0
   /**
    * [Görev 5B] sonraki metodu bir sonraki mevsimi gösterir
    * @returns {string} - bir sonraki mevsim "yaz" olarak yüklenir
@@ -104,6 +101,8 @@ function Mevsimler() {
    */
   this.sonraki = () => {
     // ✨ kodlar buraya
+    i++
+    return mevsimler[i % 4]
   }
 }
 
