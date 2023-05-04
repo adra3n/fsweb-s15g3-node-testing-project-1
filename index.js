@@ -44,7 +44,7 @@ function verileniTrimle(obj, prop) {
 function enBuyukTamsayiyiBul(tamsayilar) {
   // ✨ kodlar buraya
   let enBuyuk = tamsayilar[0].tamsayi
-  for (let index = 0; index < tamsayilar.length; index++) {
+  for (let i = 0; i < tamsayilar.length; i++) {
     let sayi = tamsayilar[i]
     if (sayi.tamsayi > enBuyuk) {
       enBuyuk = sayi.tamsayi
@@ -86,7 +86,7 @@ function Mevsimler() {
 
   // ✨ gerekli propları ekleyin
   const mevsimler = ['ilkbahar', 'yaz', 'sonbahar', 'kış']
-  const i = 0
+  let i = 0
   /**
    * [Görev 5B] sonraki metodu bir sonraki mevsimi gösterir
    * @returns {string} - bir sonraki mevsim "yaz" olarak yüklenir
@@ -106,7 +106,7 @@ function Mevsimler() {
   }
 }
 
-function Araba(/*kodlar buraya */) {
+function Araba(isim, depoBenzin, kml) {
   /**
    * [Görev 6A] Araba 3 argüman alarak bir araba nesnesi oluşturur
    * @param {string} isim - arabanın ismi
@@ -117,7 +117,9 @@ function Araba(/*kodlar buraya */) {
   this.odometer = 0 // araba 0 kilometrede yüklenecek
   this.depo = depoBenzin // araba full depoyla yüklenecek
   // ✨ gerekli propları ekleyin
-
+  this.depoKapasitesi = depoBenzin
+  this.isim = isim
+  this.kml = kml
   /**
    * [Görev 6B] sur metodu odometera km ekler ve aynı oranda depodan benzin tüketir
    * @param {string} gidilecekyol - arabayı sürmek istediğimiz km yol
@@ -133,6 +135,16 @@ function Araba(/*kodlar buraya */) {
    */
   this.sur = (gidilecekyol) => {
     // ✨ kodlar buraya
+    let kullanilacakBenzin = gidilecekyol / this.kml
+    if (kullanilacakBenzin > this.depo) {
+      let gidilebilenYol = this.depo * this.kml
+      this.depo = 0
+      this.odometer = this.odometer + gidilebilenYol
+    } else {
+      this.depo = this.depo - kullanilacakBenzin
+      this.odometer = this.odometer + gidilecekyol
+    }
+    return this.odometer
   }
 
   /**
@@ -148,6 +160,12 @@ function Araba(/*kodlar buraya */) {
    */
   this.benzinal = (litre) => {
     // ✨ kodlar buraya
+    if (this.depo + litre > this.depoKapasitesi) {
+      this.depo = this.depoKapasitesi
+    } else {
+      this.depo = this.depo + litre
+    }
+    return this.depo
   }
 }
 
@@ -166,6 +184,9 @@ function Araba(/*kodlar buraya */) {
  */
 function asenkronCiftSayi(sayi) {
   // ✨ implement
+  return new Promise((res) => {
+    res(sayi % 2 == 0 ? true : false)
+  })
 }
 
 module.exports = {
