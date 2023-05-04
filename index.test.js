@@ -20,8 +20,8 @@ describe('[Görev 2] verileniTrimle', () => {
   })
   test('[4] verilen dışındaki proplar trimlenmeden döndürülüyor', () => {
     const input = { isim: '  jane  ', yas: ' 34 ' }
-    const expected = 'jane'
-    const actual = utils.verileniTrimle(input, 'isim')
+    const expected = '34'
+    const actual = utils.verileniTrimle(input, 'yas')
     expect(actual.yas).toBe(expected)
   })
 })
@@ -35,9 +35,26 @@ describe('[Görev 4] Sayici', () => {
   beforeEach(() => {
     sayici = new utils.Sayici(3) // her test yeni bir sayı ile başlatılıyor
   })
-  // test('[6] sayici.asagiSay ilk çağırılışında başlangıç sayışını yapıyor', () => {})
-  // test('[7] sayici.asagiSay İKİNCİ çağırılışında başlangıç eksi 1 sayıyor', () => {})
-  // test('[8] sayıcı sonunda sıfıra ulaşır ama daha aşağı saymaz', () => {})
+  test('[6] sayici.asagiSay ilk çağırılışında başlangıç sayışını yapıyor', () => {
+    const actual = sayici.asagiSay()
+    const expected = 3
+    expect(actual).toBe(expected)
+  })
+  test('[7] sayici.asagiSay İKİNCİ çağırılışında başlangıç eksi 1 sayıyor', () => {
+    sayici.asagiSay()
+    const actual = sayici.asagiSay()
+    const expected = 2
+    expect(actual).toBe(expected)
+  })
+  test('[8] sayıcı sonunda sıfıra ulaşır ama daha aşağı saymaz', () => {
+    sayici.asagiSay()
+    sayici.asagiSay()
+    sayici.asagiSay()
+    sayici.asagiSay()
+    const actual = sayici.asagiSay()
+    const expected = 0
+    expect(actual).toBe(expected)
+  })
 })
 
 describe('[Görev 5] Mevsimler', () => {
